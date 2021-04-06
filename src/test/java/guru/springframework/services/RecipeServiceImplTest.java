@@ -19,13 +19,13 @@ import static org.mockito.Mockito.*;
 /**
  * Created by jt on 6/17/17.
  */
-public class RecipeServiceImplTest {
 
-    RecipeServiceImpl recipeService;
+public class RecipeServiceImplTest {
 
     @Mock
     RecipeRepository recipeRepository;
 
+    RecipeServiceImpl recipeService;
 
     @Before
     public void setUp() throws Exception {
@@ -44,7 +44,7 @@ public class RecipeServiceImplTest {
 
         Recipe recipeReturned = recipeService.findById(1L);
 
-        assertNotNull("Null recipe returned", recipeReturned);
+        assertNotNull("A null recipe returned", recipeReturned);
         verify(recipeRepository, times(1)).findById(anyLong());
         verify(recipeRepository, never()).findAll();
     }
