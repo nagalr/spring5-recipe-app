@@ -2,11 +2,19 @@ package guru.springframework.converters;
 
 import guru.springframework.commands.RecipeCommand;
 import guru.springframework.domain.*;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.*;
-
+@SpringBootTest
+@RunWith(SpringRunner.class)
+@Slf4j
 public class RecipeToRecipeCommandTest {
 
     public static final Long RECIPE_ID = 1L;
@@ -25,12 +33,15 @@ public class RecipeToRecipeCommandTest {
     public static final Long NOTES_ID = 9L;
     RecipeToRecipeCommand converter;
 
+    private static final Logger logger = LoggerFactory.getLogger(RecipeToRecipeCommandTest.class);
+
     @Before
     public void setUp() throws Exception {
         converter = new RecipeToRecipeCommand(
                 new CategoryToCategoryCommand(),
                 new IngredientToIngredientCommand(new UnitOfMeasureToUnitOfMeasureCommand()),
                 new NotesToNotesCommand());
+        logger.error("****************** Inside the setUp() method");
     }
 
     @Test
