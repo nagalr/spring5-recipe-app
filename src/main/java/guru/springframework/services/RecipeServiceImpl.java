@@ -51,6 +51,13 @@ public class RecipeServiceImpl implements RecipeService {
         return recipeOptional.get();
     }
 
+    /*
+     Service Method to save a Recipe Object.
+     The method accepts a 'RecipeCommand' object,
+     convert it to a 'Recipe' object using the (@Autowired) converter.
+     Saves the Recipe object into the DB,
+     and return a Converted-Back to 'RecipeCommand' object.
+     */
     @Override
     @Transactional
     public RecipeCommand saveRecipeCommand(RecipeCommand command) {
