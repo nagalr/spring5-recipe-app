@@ -7,7 +7,6 @@ import guru.springframework.domain.Recipe;
 import guru.springframework.repositories.RecipeRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,19 +21,22 @@ import static org.junit.Assert.assertEquals;
 @SpringBootTest
 public class RecipeServiceIT {
 
-    public static final String NEW_DESCRIPTION = "New Description";
+    private static final String NEW_DESCRIPTION = "New Description";
 
-    @Autowired
     RecipeService recipeService;
-
-    @Autowired
     RecipeRepository recipeRepository;
-
-    @Autowired
     RecipeCommandToRecipe recipeCommandToRecipe;
-
-    @Autowired
     RecipeToRecipeCommand recipeToRecipeCommand;
+
+    public RecipeServiceIT(RecipeService recipeService,
+                           RecipeRepository recipeRepository,
+                           RecipeCommandToRecipe recipeCommandToRecipe,
+                           RecipeToRecipeCommand recipeToRecipeCommand) {
+        this.recipeService = recipeService;
+        this.recipeRepository = recipeRepository;
+        this.recipeCommandToRecipe = recipeCommandToRecipe;
+        this.recipeToRecipeCommand = recipeToRecipeCommand;
+    }
 
     @Transactional
     @Test
