@@ -78,6 +78,8 @@ public class RecipeControllerTest {
         )
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/recipe/2/show"));
+
+        then(recipeService).should(times(1)).saveRecipeCommand(any(RecipeCommand.class));
     }
 
     @Test
