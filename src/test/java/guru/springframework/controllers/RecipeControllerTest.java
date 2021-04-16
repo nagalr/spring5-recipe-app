@@ -87,7 +87,8 @@ public class RecipeControllerTest {
 
         when(recipeService.findCommandById(anyLong())).thenReturn(command);
 
-        mockMvc.perform(get("/recipe/1/update"))
+        // can call the method-under-test by invoking the route with any id value. (111 here)
+        mockMvc.perform(get("/recipe/111/update"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("recipe/recipeform"))
                 .andExpect(model().attributeExists("recipe"));
