@@ -28,6 +28,9 @@ public class RecipeController {
         return "recipe/show";
     }
 
+    /*
+     sending an empty command-object to the view, hence the view will not populate.
+     */
     @GetMapping("recipe/new")
     public String newRecipe(Model model){
         model.addAttribute("recipe", new RecipeCommand());
@@ -35,6 +38,9 @@ public class RecipeController {
         return "recipe/recipeform";
     }
 
+    /*
+     sending the same 'recipeform' view, now populated with the command-object values.
+     */
     @GetMapping("recipe/{id}/update")
     public String updateRecipe(@PathVariable String id, Model model){
         model.addAttribute("recipe", recipeService.findCommandById(Long.valueOf(id)));
